@@ -175,8 +175,12 @@ def random_search(pipeline, X, y, n_iter=5, cv=3, random_state=42):
 
     return randomized_search
 
-# Step 17 - test_rmse (not yet solved)
-# TODO: implement
+# Step 17 - test_rmse
+def test_rmse(model, test_set):
+    # TODO: add ratio features, split, predict with the fitted model, return rmse.
+    X_test, y_test = split_features_labels(add_ratio_features(test_set))
+    prediction = model.predict(X_test)
+    return rmse(y_test,prediction)
 
 # Step 18 - bootstrap_rmse_ci (not yet solved)
 # TODO: implement
