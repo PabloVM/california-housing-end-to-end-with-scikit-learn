@@ -208,8 +208,14 @@ def feature_importances(search, k=5):
     imps = est.steps[-1][1].feature_importances_
     return sorted(zip(imps.round(3), names), reverse=True)[:k]
 
-# Step 20 - worst_errors (not yet solved)
-# TODO: implement
+# Step 20 - worst_errors
+def worst_errors(model, df, k=5):
+    # TODO: DataFrame of the k largest absolute errors with columns actual, predicted, abs_error.
+    X, y = split_features_labels(add_ratio_features(df))
+    pred = model.predict(X)
+    worst = pd.DataFrame({"actual": y, "predicted": pred, "abs_error": np.abs(y - pred)}, index=df.index)
+
+    return worst.sort_values("abs_error",ascending=False).head(k)
 
 # Step 21 - save_and_reload (not yet solved)
 # TODO: implement
